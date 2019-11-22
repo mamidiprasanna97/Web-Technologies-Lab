@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-Do List</title>
+    <style>
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: calc(1rem + (3) * ((100vw - 300px) / (1080 - 300)));
+    background-color: lightskyblue;
+    font-style:italic;
+   
+}
+
+:root,
+html,
+body {
+    height: 100%;
+}
+
+input[type=checkbox] {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+input[type="text"]
+{
+border: 1px solid black;
+}
+input[type=checkbox] + label {
+    position: relative;
+}
+
+input[type=checkbox] + label::before {
+    content: '';
+    position: absolute;
+    top: 0.1em;
+    left: -1.5em;
+    width: 1em;
+    height: .75em;
+    border: thin solid pink;
+    margin-right: 1em;
+    padding: 0 .1em 1.1em .1em;
+}
+
+input[type=checkbox]:focus + label::before {
+    outline: rgb(59, 153, 252) solid 0.1em;
+}
+
+input[type=checkbox]:checked + label::before {
+    content: '🗸';
+}
+
+header, footer {
+    display: flex;
+    height: 15%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+main {
+    height: 70%;
+}
+
+#tasks{
+    display: flex;
+    height: 3em;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 0.1em solid pink;
+}
+
+#task-list {
+    display: flex;
+    justify-content: center;
+    height: calc(100% - 3rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#task-list {
+    display: grid;
+    grid-template-columns: max-content;
+    grid-auto-rows: max-content;
+    height: 100%;
+    font-size: 1.3rem;
+    list-style: none;
+}
+
+#todo-task > li {
+    height: 3em;
+}
+
+#add-tasks {
+    width: 2em;
+}
+footer {
+    border-top: 0.1em solid pink;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>To Do List</h1>
+    </header>
+    <main>
+        <form action="/" method="get" id="tasks">
+            <label for="todo-tasks">Add a To-Do-Tasks</label>
+            <input id="todo-tasks" type="text" name="todo-tasks">
+            <input id="add-tasks" type="image" src="img/plus.png" alt="Add a To Do">
+        </form>
+        <form action="/" method="get">
+            <ul id="task-list">
+                
+            </ul>
+        </form>
+    </main>
+    <footer>
+        Copyright &copy;2019
+    </footer>
+    <template id="todo-task">
+        <li>
+           
+            <input id="select-task" type="checkbox" onClick="checkBoxUpdate(this)" name="select-task">
+            <label for="select-task"></label>
+            <input id ="emoji" type="image" src="img/emoji.png" alt="select-task"
+            height="50" width="50">
+            
+        </li>
+    </template>
+    <script src="js/index.js"></script>
+</body>
+</html>
