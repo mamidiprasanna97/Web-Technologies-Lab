@@ -1,16 +1,13 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
 // Check that service workers are supported
-if ('serviceWorker' in navigator) {
-  // Use the window load event to keep the page load performant
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js');
-  });
-  }
+
 workbox.precaching.precacheAndRoute([
     '/index.html',
     '/index.js',
-    '/img/(?:add.svg|emoji.png|plus.png)',
+    '/img/add.svg',
+    '/img/emoji.png',
+    '/img/plus.png',
     '/css/emoji.png'
 ]);
 workbox.routing.registerRoute(
@@ -37,12 +34,3 @@ workbox.routing.registerRoute(
         cacheName: 'image-cache',
     })
 );
-workbox.routing.registerRoute(
-    /\.(?)$/,
-    new workbox.strategies.StaleWhileRevalidate({
-        cacheName: 'default-cache',
-    })
-);
-workbox.setConfig({
-    debug: true
-  });
