@@ -104,6 +104,22 @@ main {
     overflow-x: hidden;
     overflow-y: auto;
 }
+.list{
+    /* animation: fade-out 0.5s ease-in 0.1s 1 forwards; */
+    animation: example;
+    animation-delay: 1s;
+    animation-duration: 2s;
+    transition-property: width, opacity;
+    transition-duration: 1000ms 1000ms;
+   
+
+}
+.listDelete{
+     animation: disappear 1s 2s;
+}
+.list:hover {
+    transform: translate(3em,0);
+  }
 
 #task-list {
     display: grid;
@@ -124,6 +140,24 @@ main {
 footer {
     border-top: 0.1em solid pink;
 }
+ 
+@keyframes example {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+} 
+
+@keyframes disappear {
+    from { 
+        opacity: 1; 
+    }
+    to {
+        opacity: 0;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -143,19 +177,17 @@ footer {
         </form>
     </main>
     <footer>
-        Copyright &copy;2019
-    </footer>
+     
     <template id="todo-task">
-        <li>
+        <li class="list">
            
-            <input id="select-task" type="checkbox" onClick="checkBoxUpdate(this)" name="select-task">
+            <input id="select-task" type="checkbox" onclick="checkBoxUpdate(this)" name="select-task">
             <label for="select-task"></label>
-            <input id ="emoji" type="image" src="img/emoji.png" alt="select-task"
-            height="50" width="50">
-            
+            <input type="button" name="delete" onclick="deleteListItems(this)" value="Delete">
         </li>
     </template>
+        Copyright &copy;2019
+    </footer>
     <script src="/index.js"></script>
-</script>
 </body>
 </html>

@@ -52,5 +52,17 @@ function addNewToDo(event) {
     }
     todo.value = '';
 }
+function deleteListItems(elem){
+    elem.parentElement.classList.toggle('listDelete');
+    elem.parentElement.addEventListener('animationend',listenerFunc);    
+}
 
+function listenerFunc(_event){
+    const key= this.querySelector("input[type=checkbox]").id;
+    const dataObj = window.localStorage;
+    dataObj.removeItem(key);
+    const parent = this.parentElement;
+    parent.removeChild(this);
+    
+}
 run();
